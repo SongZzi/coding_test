@@ -1,11 +1,7 @@
-#시간 초과
-import itertools
-
+# 풀이
 def solution(numbers):
-    answer = []
-    arr = list(itertools.permutations(numbers, len(numbers)))
+    arr = list(map(str, numbers))
 
-    for i in range(len(arr)):
-        answer.append(int("".join(map(str, arr[i]))))
+    arr.sort(key=lambda x: x * 3, reverse=True)  # x*3 기준으로 내림차순 정렬
 
-    return str(max(answer))
+    return str(int(''.join(arr)))  # 모든값이 0인 경우 처리
