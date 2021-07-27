@@ -1,9 +1,10 @@
-#시간초과
+import sys
+
 N,M=map(int, input().split())
 arr=[[0]*(N+1) for _ in range(N+1)]
 cnt=0
 for i in range(M):
-    a,b=map(int, input().split())
+    a,b=map(int, sys.stdin.readline().split()) #시간초과 해결
     arr[a][b]=1
     arr[b][a]=1
 visited=[0]*(N+1)
