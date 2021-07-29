@@ -1,16 +1,13 @@
+import sys
+sys.setrecursionlimit(10**7)
+
 T=int(input())
 
-def bfs(V):
-    queue = [V]
-    visited[V] = 1  #방문한 곳 1로 표시
-    while queue:
-        V = queue[0]
-        queue.pop(0)
-        next=arr[V]
-        if visited[next]==0: #아직 방문하지 않은 곳인 경우
-            visited[next]=1
-            queue.append(next)
-    return 1
+def dfs(V):
+    visited[V]=1  #방문한 곳 1로 표시
+    next=arr[V]
+    if visited[next]==0: #아직 방문하지 않은 곳인 경우
+        dfs(next)
 
 for i in range(T):
     answer = 0
@@ -20,5 +17,6 @@ for i in range(T):
 
     for i in range(1, N+1):
         if visited[i]==0:
-            answer+=bfs(i)
+            dfs(i)
+            answer+=1
     print(answer) #순열 사이클의 개수
