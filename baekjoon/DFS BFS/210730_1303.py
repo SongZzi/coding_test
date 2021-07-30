@@ -1,7 +1,7 @@
 import sys
 
 N,M=map(int, input().split())
-arr=[list(map(str, sys.stdin.readline())) for _ in range(M)]
+arr=[list(sys.stdin.readline().strip()) for _ in range(M)] #문자열 M줄을 입력받아 리스트에 저장
 visited=[[0]*(N) for _ in range(M)]
 
 dx=[-1,1,0,0] #상,하,좌,우
