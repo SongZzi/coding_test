@@ -1,3 +1,4 @@
+#풀이1
 def solution(skill, skill_trees):
     result = 0
 
@@ -16,6 +17,24 @@ def solution(skill, skill_trees):
                 flag = 'false'
 
         if answer != -1 and order == sorted(order):
+            result += 1
+
+    return result
+
+#풀이2
+def solution(skill, skill_trees):
+    result = 0
+
+    for i in range(len(skill_trees)):
+        skill_list = list(skill)
+
+        for n in skill_trees[i]:
+            if n in skill_list:
+                if n != skill_list[0]:
+                    break
+                else:
+                    skill_list.pop(0)
+        else:
             result += 1
 
     return result
