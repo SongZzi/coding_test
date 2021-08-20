@@ -1,15 +1,16 @@
-#시간초과
+#stack 사용 -> 시간초과 해결
 def solution(s):
-    i = -1
+    stack = []
 
-    while True:
-        i += 1
-        if i == len(s) - 2:
-            break
-        elif s[i] == s[i + 1]:
-            s = s[:i] + s[i + 2:]
-            i = -1
-            if len(s) == 2:
-                return 1
+    for i in range(len(s)):
+        if len(stack) == 0:
+            stack.append(s[i])
+        elif s[i] == stack[-1]:
+            stack.pop()
+        else:
+            stack.append(s[i])
 
-    return 0
+    if len(stack) == 0:
+        return 1
+    else:
+        return 0
