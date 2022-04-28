@@ -5,8 +5,6 @@ n,m,k=map(int, input().split())
 array=[]
 for i in range(n):
     array.append(list(map(int, input().split())))
-#dp 2차원 배열 - 동서남북 방향으로 연속해서 이동할 수 있는 칸의 수
-dp=[[0]*m for i in range(n)]
 
 #주사위 초기화
 dice=[[0,2,0],[4,1,3],[0,5,0],[0,6,0]]
