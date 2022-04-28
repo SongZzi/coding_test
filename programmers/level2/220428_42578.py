@@ -1,31 +1,17 @@
-# itertools combination - 1번 테스트 케이스 시간초과
-import itertools
-
+#시간 초과 해결 - dictionary
 def solution(clothes):
-    answer = 0
-    clothes_type = []
-    # clothes_types 배열에 의상의 종류 담기
+    answer = 1
+    d = dict()  # dictionary 선언
+
     for i in range(len(clothes)):
-        if clothes[i][1] not in clothes_type:
-            clothes_type.append(clothes[i][1])
-    # 같은 종류인 의상 개수 배열에 담기
-    graph = [0] * len(clothes_type)
-    for i in range(len(clothes)):
-        idx = clothes_type.index(clothes[i][1])
-        graph[idx] += 1
+        key = clothes[i][1]
+        if key not in d:  # dictionary에 해당 key가 없는 경우
+            d[key] = [clothes[i][0]]  # value - list 형태
+        else:  # dictionary에 해당 key가 있는 경우
+            d[key].append(clothes[i][0])
 
-    # 배열 원소들의 곱셈의 합 구하는 함수
-    def mul(arr):
-        sum = 0
-        for i in range(len(arr)):
-            ans = 1
-            for j in range(len(arr[0])):
-                ans *= arr[i][j]
-            sum += ans
-        return sum
+    for key in d:
+        answer *= len(d[key]) + 1  # (value: 위장하기 위해 입는 경우의 수) + (1: 안 입는 경우)
 
-    for i in range(1, len(clothes_type) + 1):
-        arr = list(itertools.combinations(graph, i))
-        answer += mul(arr)
-
-    return answer
+    # 아무것도 입지 않은 경우 하나 제외
+    return answer - 1
