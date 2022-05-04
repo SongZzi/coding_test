@@ -1,25 +1,17 @@
-#효율성 테스트-시간초과
+# 시간 초과 해결 - dp
 def solution(board):
     answer = 0
+    n = len(board)
+    m = len(board[0])
 
-    def findBox(x, y):
-        length = 2
-        while True:
-            flag = True
-            for i in range(0, length):
-                for j in range(0, length):
-                    nx = x + i
-                    ny = y + j
-                    if nx >= 0 and nx < len(board) and ny >= 0 and ny < len(board[0]):
-                        if board[nx][ny] == 0:
-                            return length - 1
-                    else:
-                        return length - 1
-            length += 1
-
-    for i in range(len(board)):
-        for j in range(len(board[0])):
+    for i in range(1, n):
+        for j in range(1, m):
             if board[i][j] == 1:
-                answer = max(findBox(i, j), answer)
+                # 현재의 위치에서 가능한 최대 크기의 정사각형의 한 변의 길이 구하기
+                board[i][j] = min(board[i - 1][j - 1], board[i - 1][j], board[i][j - 1]) + 1
+
+    # 가장 큰 정사각형의 한 변의 길이 구하기
+    for i in range(n):
+        answer = max(answer, max(board[i]))
 
     return answer ** 2
