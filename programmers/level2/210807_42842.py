@@ -1,26 +1,14 @@
 import math
 
-divisor_list = []
-
-def carpet_size(w, h, brown, yellow):
-    if w * 2 + h * 2 - 4 == brown and (w - 2) * (h - 2) == yellow:
-        return True
-
-def divisor(x):
-    for i in range(1, int(math.sqrt(x)) + 1):
-        if x % i == 0:
-            if i >= x // i:
-                divisor_list.append((i, x // i))
-            else:
-                divisor_list.append((x // i, i))
-
 def solution(brown, yellow):
     answer = []
-    divisor(brown + yellow)
 
-    for i in range(len(divisor_list)):
-        if carpet_size(divisor_list[i][0], divisor_list[i][1], brown, yellow) == True:
-            answer.append(divisor_list[i][0])
-            answer.append(divisor_list[i][1])
+    for i in range(1, int(math.sqrt(yellow)) + 1):
+        if yellow % i == 0:  # i가 약수인 경우
+            if (i + yellow // i) * 2 + 4 == brown:
+                answer.append(i + 2)
+                answer.append(yellow // i + 2)
+                break
 
+    answer.sort(reverse=True)  # 내림차순 정렬 (가로 길이 >= 세로 길이)
     return answer
